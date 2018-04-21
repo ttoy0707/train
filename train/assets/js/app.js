@@ -1,4 +1,4 @@
-// Initialize Firebase
+
 var config = {
     apiKey: "AIzaSyAfKKjuWyWBbgA8Eu2PkIDybyKuTPOYVx4",
     authDomain: "train-ed975.firebaseapp.com",
@@ -29,7 +29,7 @@ database.ref().on("value", function(snapshot) {
 
 });
 
-//grabs information from the form
+
 $("#addTrainBtn").on("click", function() {
 
     var trainName = $("#trainNameInput").val().trim();
@@ -37,28 +37,10 @@ $("#addTrainBtn").on("click", function() {
     var firstTrain = $("#firstInput").val().trim();
     var frequency = $("#frequencyInput").val().trim();
 
-    //ensures that each input has a value
-    if (trainName == "") {
-        alert('Enter a train name.');
-        return false;
-    }
-    if (destination == "") {
-        alert('Enter a destination.');
-        return false;
-    }
-    if (firstTrain == "") {
-        alert('Enter a first train time.');
-        return false;
-    }
-    if (frequency == "") {
-        alert('Enter a frequency');
-        return false;
-    }
 
-    // THE MATH!
-    //subtracts the first train time back a year to ensure it's before current time.
+
     var firstTrainConverted = moment(firstTrain, "hh:mm").subtract("1, years");
-    // the time difference between current time and the first train
+ 
     var difference = currentTime.diff(moment(firstTrainConverted), "minutes");
     var remainder = difference % frequency;
     var minUntilTrain = frequency - remainder;
